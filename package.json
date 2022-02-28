@@ -1,7 +1,6 @@
 {
   "name": "desafio-real-m6-2",
   "version": "1.0.0",
-  
   "license": "MIT",
   "dependencies": {
     "@types/node": "^17.0.21",
@@ -16,8 +15,7 @@
     "nodemon": "^2.0.15",
     "parcel": "^2.3.2",
     "typescript": "^4.5.5"
-  }
-  ,
+  },
   "scripts": {
     "dev:front": "parcel serve ./client/index.html",
     "build:front": "parcel build ./client/index.html",

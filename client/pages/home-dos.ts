@@ -1,6 +1,6 @@
 import { Router } from "@vaadin/router";
 
-class HomePage extends HTMLElement {
+class HomePageDos extends HTMLElement {
   connectedCallback() {
     this.render();
     const style = document.createElement("style");
@@ -15,9 +15,7 @@ class HomePage extends HTMLElement {
       color: green;
       font-family: 'Source Code Pro', monospace;
     }
-    .subtitle{
-      font-size: 25px;
-    }
+   
     .container-inputs{
       display: grid;
       gap: 17px;
@@ -35,34 +33,22 @@ class HomePage extends HTMLElement {
     `;
     this.appendChild(style);
   }
-  addListeners() {
-    const inputNo = this.querySelector(".no");
-    inputNo.addEventListener("click", () => {
-      Router.go("register");
-    });
-    const inputYes = this.querySelector(".yes");
-    inputYes.addEventListener("click", () => {
-      Router.go("home-dos");
-    });
-  }
+  addListeners() {}
   render() {
     const div = document.createElement("div");
     div.innerHTML = `
     
     <div class="container-full-page">
         <div class="container-title"  
-            <h1 class="title-page">Bienvenidxs</h1>
-             <h2 class="subtitle"> Estas registradx?</h2>
+            <h1 class="title-page">Piedra,
+            Papel ó
+            Tijera</h1>             
        </div>
        <div class="container-inputs">
-          <div>
-              <label for="si">Si </label>
-              <input class="yes" id="yes" type="radio" name="select" value="yes" />
-          </div>
-          <div>
-              <label for="no">No </label>
-              <input class="no" id="no" type="radio" name="select" value="no"/>
-          </div>
+          
+              <button-comp>Ingresar a sala</button-comp>
+              <button-comp>Nuevo Juego</button-comp>
+          
        </div>
     </div>
     
@@ -72,4 +58,4 @@ class HomePage extends HTMLElement {
     this.addListeners();
   }
 }
-customElements.define("home-page", HomePage);
+customElements.define("home-dos", HomePageDos);

@@ -1,4 +1,6 @@
-import "./router"
-import "./pages/home"
-import { state } from "./state"
-
+import "./router";
+import "./pages/home";
+import "./pages/register";
+import "./pages/home-dos";
+import "./components/button";
+import { state } from "./state";

@@ -1,13 +1,11 @@
-class ButtonComp extends HTMLElement{
- 
-  constructor(){
-    super()
-    this.render()
-    
+class ButtonComp extends HTMLElement {
+  constructor() {
+    super();
+    this.render();
   }
-  connectedCallback(){
-    const style= document.createElement("style")
-    style.innerHTML= `
+  connectedCallback() {
+    const style = document.createElement("style");
+    style.innerHTML = `
     .button-elem{
       border-radius: 18px;
       font-family: 'Source Code Pro', monospace;
@@ -19,16 +17,13 @@ class ButtonComp extends HTMLElement{
       color: silver;
       
     } 
-    `
-    this.appendChild(style)
-    
-    
+    `;
+    this.appendChild(style);
   }
-  render(){
-   this.innerHTML = `
+  render() {
+    this.innerHTML = `
    <button class="button-elem">${this.textContent}</button>
-   `
-    
+   `;
   }
 }
-customElements.define("button-comp", ButtonComp)
+customElements.define("button-comp", ButtonComp);
