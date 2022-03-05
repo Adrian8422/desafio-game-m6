@@ -1,20 +1,18 @@
-const piedra = require("../../assets/piedra (1).svg")
-const papel = require("../../assets/papel.svg")
-const tijera = require("../../assets/tijera (1).svg")
+const piedra = require("../../assets/piedra (1).svg");
+const papel = require("../../assets/papel.svg");
+const tijera = require("../../assets/tijera (1).svg");
 
-
-
-class HandsPlay extends HTMLElement{
+class HandsPlay extends HTMLElement {
   shadow: ShadowRoot;
-  constructor(){
-    super()
-    this.shadow = this.attachShadow({mode:"open"})
+  constructor() {
+    super();
+    this.shadow = this.attachShadow({ mode: "open" });
   }
-  connectedCallback(){
-    const style = document.createElement("style")
-    const attackHover = this.hasAttribute("hover")
-    
-    if(attackHover == true){
+  connectedCallback() {
+    const style = document.createElement("style");
+    const attackHover = this.hasAttribute("hover");
+
+    if (attackHover == true) {
       `.hands{
         opacity: 0.8;
       }
@@ -23,49 +21,39 @@ class HandsPlay extends HTMLElement{
         width:90px;
         transition-duration:0.7s;
       }
-      `
+      `;
     }
-    this.shadow.appendChild(style)
-    this.render()
-    
+    this.shadow.appendChild(style);
+    this.render();
   }
-  addListeners(){
-    const handEl:any = this.shadow.querySelector(".hands")
-    const inGame :any= this.getAttribute("in-game")
-    if(inGame){
-      handEl.style.height="325px",
-      handEl.style.width ="180px"
+  addListeners() {
+    const handEl: any = this.shadow.querySelector(".hands");
+    const inGame: any = this.getAttribute("in-game");
+    if (inGame) {
+      (handEl.style.height = "325px"), (handEl.style.width = "180px");
     }
-
-
-
   }
-  render(){
-
-    const jugada = this.getAttribute("jugada")
-    let gameType = ""
-    if(jugada =="piedra"){
-      gameType = piedra
-    }else if (jugada =="papel"){
-      gameType= papel
-    }else {
-      gameType =tijera
+  render() {
+    const jugada = this.getAttribute("jugada");
+    let gameType = "";
+    if (jugada == "piedra") {
+      gameType = piedra;
+    } else if (jugada == "papel") {
+      gameType = papel;
+    } else {
+      gameType = tijera;
     }
-    const div = document.createElement("div")
+    const div = document.createElement("div");
     div.innerHTML = `
     <div>
     <img class="hands" src="${gameType}">
     </div>
     
     
-    `
+    `;
 
-    this.shadow.appendChild(div)
-    this.addListeners()
-
-
-
-
+    this.shadow.appendChild(div);
+    this.addListeners();
   }
 }
-customElements.define("hands-el",HandsPlay)
+customElements.define("hands-el", HandsPlay);

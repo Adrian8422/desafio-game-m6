@@ -23,5 +23,8 @@
     "build:api": "tsc ./server/index.ts",
     "build": "yarn build:front && yarn build:api",
     "start": "node ./server/index.js"
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
   }
 }

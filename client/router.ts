@@ -8,4 +8,6 @@ router.setRoutes([
   { path: "/", component: "home-page" },
   { path: "/register", component: "sign-up" },
   { path: "/home-dos", component: "home-dos" },
+  { path: "/share-code", component: "share-code" },
+  { path: "/access-room", component: "access-room" },
 ]);

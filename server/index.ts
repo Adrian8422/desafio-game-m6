@@ -137,6 +137,21 @@ app.get("/rooms/:roomId", (req, res) => {
       }
     });
 });
+
+app.post("/rooms/:roomId", (req, res) => {
+  const { roomId } = req.params;
+  const { results } = req.body;
+
+  roomsCollection
+    .doc(roomId.toString())
+    .get()
+    .then((room) => {
+      if (room.exists) {
+        const roomDate = room.data();
+      }
+    });
+});
+
 app.post("/messages/:roomId", (req, res) => {
   const { roomId } = req.params;
   const chatRoomsRed = rtdb.ref(`/rooms/${roomId}/messages`);
