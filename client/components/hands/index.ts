@@ -13,7 +13,7 @@ class HandsPlay extends HTMLElement {
     const attackHover = this.hasAttribute("hover");
 
     if (attackHover == true) {
-      `.hands{
+      style.innerHTML = `.hands{
         opacity: 0.8;
       }
       .hands:hover{

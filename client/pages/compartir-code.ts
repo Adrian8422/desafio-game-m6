@@ -1,11 +1,20 @@
 import { state } from "../state";
+import { Router } from "@vaadin/router";
 class CompartirCod extends HTMLElement {
   connectedCallback() {
-    state.subscribe(() => {
-      state.getState();
-      this.render();
-    });
     this.render();
+    const cs = state.getState();
+    state.setValuesPlayer1Rtdb();
+    state.listenRoom();
+    state.subscribe(() => {
+      if (
+        cs.dataRtdb[0].online == true &&
+        cs.dataRtdb[1].online == true &&
+        window.location.pathname == "/share-code"
+      ) {
+        Router.go("waiting-start");
+      }
+    });
   }
   addStyles() {
     const containerUser = this.querySelector(".container-page");

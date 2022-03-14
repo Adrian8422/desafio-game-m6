@@ -48,9 +48,12 @@ app.post("/signin", (req, res) => {
     .get()
     .then((response) => {
       if (response.empty) {
-        console.error("No estas registrado");
+        res.status(404).json({
+          message: "user not found",
+        });
       } else {
         res.json({
+          message: "signin exitoso",
           id: response.docs[0].id,
         });
       }

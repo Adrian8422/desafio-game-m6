@@ -98,13 +98,24 @@ class HomePageDos extends HTMLElement {
       const target = e.target as any;
 
       state.setNombre(target.nombre.value);
-      state.signIn(() => {
+      state.signIn((err) => {
+        if (err) {
+          console.error("Ocurrio error en el logueo");
+        }
+        if (cs.messageForRegister == "user not found") {
+          alert("no hay un usuario llamado asi");
+          Router.go("home-dos");
+        }
         state.askNewRoom(() => {
-          state.setValuesPlayer1Rtdb();
-          state.accessToRoom();
+          state.accessToRoom(() => {
+            if (cs.idUser1 && location.pathname == "/home-dos") {
+              Router.go("share-code");
+              ///sideja de funcionAR QUITAR EL STATEVALUES
+              state.setValuesPlayer1Rtdb();
+            }
+          });
         });
       });
-      Router.go("share-code");
     });
     /// REALIZO EL SIGNIN PARA INGRESAR A SALA EXISTENTE(REVISAR ESTO, TENGO QUE PODER HACER UN SIGNIN COMO EN EL QUE ES PARA CREAR UNA NUEVA SALA Y LUEGO MANDARME A LA SALA CONECTADA, TAMBIEN REVISAR QUE EN EL HTML DE ABAJO AGREGE LOS FORMULARIOS PARA EL ACCESTOROOM PERO HAY QUE VER COMO ORGANIZARLO.DALEEPAPAAAA,(CREO QUE LA SOLUCION ES QUE EL BOTON INGRESAR A SALA ME REDIRIJA A UNA NUEVA PAGE QUE SEA ACCES TOROOM Y AHI MISMO EN ESA PAGE HACER DENUEVO EL SIGN IN Y ASI PODER ACCEDER AL ACCES TOO ROOM))
     accederSala.addEventListener("click", () => {

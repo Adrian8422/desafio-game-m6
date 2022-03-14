@@ -48,42 +48,112 @@ class AccessRoom extends HTMLElement {
     
     `;
     this.appendChild(style);
-  }
 
-  signIn() {
+    ///logeo de segundo usuario
+
     const cs = state.getState();
     const form = this.querySelector(".form");
     const button = this.querySelector(".button");
-    const formRoom = this.querySelector(".form-idRoomExist");
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const target = e.target as any;
-      state.setState(cs);
+
       state.setNombreUser2(target.nombre.value);
-      state.setState(cs);
-      state.signInUser2(() => {
-        state.accessToRoom();
+
+      state.signInUser2((err) => {
+        if (err) {
+          console.error("Ocurrio error en el logueo");
+        }
+        if (cs.messageForRegister == "user not found") {
+          alert("no hay un usuario llamado asi");
+          Router.go("home-dos");
+        }
+        if (cs.idUser2 && location.pathname == "/access-room") {
+          form.setAttribute("style", "display:none");
+          formRoom.setAttribute("style", "display:grid");
+        }
       });
     });
-    button.addEventListener("click", () => {
-      form.setAttribute("style", "display:none");
-      formRoom.setAttribute("style", "display:grid");
-    });
-  }
-  enterRoom() {
+
+    // aca creamos el acceso a la sala poniendo en regla que solo 2 usuarios puedan conectarse ya que esta pactado asi en la rtdb
     const inputName = this.querySelector(".input");
     const inputIdRoom = this.querySelector(".idroom");
-    const cs = state.getState();
+
     const formRoom = this.querySelector(".form-idRoomExist");
 
     formRoom.addEventListener("submit", (e) => {
       e.preventDefault();
       const target = e.target as any;
-      state.data.roomId = target.idroom.value;
-      state.setState(cs);
-      state.accessToRoom(state.data.roomId);
-      console.log("evento submit del acces room", state.data.roomId);
-      state.setState(cs);
+      cs.roomId = target.idroom.value;
+
+      ////TOQUETEAR ESTO ASI ME FUNCIONA BIEN ESTO Y PUEDO SEGUIR AVANZANDO- NO ME TOMA LOS DATOS DEL SUBSCRIBE
+
+      state.accessToRoom(() => {
+        state.subscribe(() => {
+          if (cs.dataRtdb[1].userId && location.pathname == "/access-room") {
+            Router.go("full-sala");
+          } else if (
+            !cs.dataRtdb[1].userId &&
+            location.pathname == "/access-room"
+          ) {
+            state.setValuesPlayer2rtdb();
+            state.listenRoom();
+
+            state.subscribe(() => {
+              if (
+                cs.dataRtdb[0].online == false ||
+                cs.dataRtdb[1].online == false
+              ) {
+                console.error("somo player is not connected");
+              }
+              if (
+                cs.dataRtdb[0].online == true &&
+                cs.dataRtdb[1].online == true &&
+                window.location.pathname == "/access-room"
+              ) {
+                Router.go("waiting-start");
+              }
+            });
+          }
+        });
+        // state.subscribe(() => {
+        ///ver como hace funcionar el acces to romm poniendoles los filtros para solo poder acceder copn ese usuario a esa sala
+        // const dataRtdbUser1 = state.data.dataRtdb[0].userId;
+        // const dataRtdbUser2 = state.data.dataRtdb[1].userId;
+        // console.log("dataUserr1Parse", dataRtdbUser1);
+        // console.log("dataUserr2", dataRtdbUser2);
+        // console.log("data del rtdb en posisicon de user2", cs.dataRtdb[1]);
+        // if (cs.dataRtdb[1].userId == dataRtdbUser2) {
+        // }
+        // });
+        // state.subscribe(() => {
+        //   if (cs.dataRtdb[1].userId) {
+        //     // Router.go("home-dos");
+        //   } else if (
+        //     !cs.dataRtdb[1].userId &&
+        //     location.pathname == "/access-room"
+        //   ) {
+        //     state.setValuesPlayer2rtdb();
+        //     state.listenRoom();
+
+        //     state.subscribe(() => {
+        //       if (
+        //         cs.dataRtdb[0].online == "false" ||
+        //         cs.dataRtdb[1].online == "false"
+        //       ) {
+        //         console.error("players not connected");
+        //       }
+        //       if (
+        //         cs.dataRtdb[0].online == "true" ||
+        //         cs.dataRtdb[1].online == "true"
+        //       ) {
+        //         Router.go("waiting-start");
+        //       }
+        //     });
+        //   }
+        // });
+      });
     });
   }
   render() {
@@ -120,8 +190,6 @@ class AccessRoom extends HTMLElement {
     `;
 
     this.appendChild(div);
-    this.signIn();
-    this.enterRoom();
   }
 }
 customElements.define("access-room", AccessRoom);

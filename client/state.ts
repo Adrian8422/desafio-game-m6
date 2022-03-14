@@ -1,10 +1,12 @@
 const API_BASE_URL = "http://localhost:3003";
+type Jugada = "piedra" | "papel" | "tijera";
 import { rtdb } from "./rtdb";
 import map from "lodash/map";
 
 const state = {
   data: {
     messageForRegister: "",
+
     userName1: "",
     userName2: "",
     idUser1: "",
@@ -68,6 +70,7 @@ const state = {
           return res.json();
         })
         .then((data) => {
+          cs.messageForRegister = data.message;
           cs.idUser1 = data.id;
           this.setState(cs);
           callback();
@@ -139,12 +142,12 @@ const state = {
           cs.rtdbRoomId = data.rtdbRoomId;
           this.setState(cs);
           this.listenRoom();
-          // if (callback) callback();
+          if (callback) callback();
         });
     }
   },
 
-  listenRoom(callback) {
+  listenRoom(callback?) {
     const cs = this.getState();
     //seccion para escribir msg del backend
     const roomRef = rtdb.ref("/rooms/" + cs.rtdbRoomId);
@@ -154,8 +157,10 @@ const state = {
 
       //treamos datos del currentGame para guardarlo en el state y poder sumar las cosas
       const currentList = map(currentGameFromSv.currentGame);
+      console.log("elcurrent list", currentList);
       cs.dataRtdb = currentList;
       this.setState(currentState);
+      console.log("data rtdb dsp del setState", cs.dataRtdb);
       if (callback) callback();
     });
   },
@@ -175,12 +180,12 @@ const state = {
     this.setState(cs);
   },
 
-  setValuesPlayer2rtdb() {
+  setValuesPlayer2rtdb(callback?) {
     const cs = this.getState();
     const roomRef = rtdb.ref("/rooms/" + cs.rtdbRoomId + "/currentGame");
     if (cs.userName2 && cs.idUser2) {
       roomRef.update({
-        user1: {
+        user2: {
           name: cs.userName2,
           online: true,
           userId: cs.idUser2,
@@ -189,10 +194,11 @@ const state = {
       cs.userOnline2 = true;
     }
     this.setState(cs);
+    if (callback) callback();
   },
   setStartPlayer1(callback?) {
     const cs = this.getState();
-    const roomRef = rtdb.ref("/rooms/" + cs.rtdbRoomId + "/currentGame");
+    const roomRef = rtdb.ref("/rooms/" + cs.rtdbRoomId + "/currentGame/");
     if (cs.userName1 && cs.idUser1) {
       roomRef.update({
         user1: {
@@ -209,7 +215,7 @@ const state = {
   },
   setStartPlayer2(callback?) {
     const cs = this.getState();
-    const roomRef = rtdb.ref("/rooms/" + cs.rtdbRoomId + "/currentGame");
+    const roomRef = rtdb.ref("/rooms/" + cs.rtdbRoomId + "/currentGame/");
     if (cs.userName2 && cs.idUser2) {
       roomRef.update({
         user2: {
@@ -243,6 +249,40 @@ const state = {
   setNombreUser2(nombre: string) {
     const cs = this.getState();
     cs.userName2 = nombre;
+    this.setState(cs);
+  },
+  setMoveUser1(move: Jugada) {
+    const cs = this.getState();
+    const roomRef = rtdb.ref("/rooms/" + cs.rtdbRoomId + "/currentGame/");
+    if (cs.userName1) {
+      roomRef.update({
+        user1: {
+          name: cs.userName1,
+          online: true,
+          userId: cs.idUser1,
+          start: true,
+          move: move,
+        },
+      });
+      cs.currentGame.userMove1 = move;
+    }
+    this.setState(cs);
+  },
+  setMoveUser2(move: Jugada) {
+    const cs = this.getState();
+    const roomRef = rtdb.ref("/rooms/" + cs.rtdbRoomId + "/currentGame/");
+    if (cs.userName2) {
+      roomRef.update({
+        user2: {
+          name: cs.userName2,
+          online: true,
+          userId: cs.idUser2,
+          start: true,
+          move: move,
+        },
+      });
+      cs.currentGame.userMove2 = move;
+    }
     this.setState(cs);
   },
 };
