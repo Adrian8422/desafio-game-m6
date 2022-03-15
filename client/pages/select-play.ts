@@ -24,7 +24,20 @@ class SelectPlay extends HTMLElement {
   }
   addListeners() {
     const cs = state.getState();
-    const choices = this.querySelectorAll(".choice");
+    const hoverChoices = this.querySelectorAll(".choice");
+    hoverChoices.forEach((e) => {
+      e.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const move = e.getAttribute("jugada");
+        if (move == "piedra") {
+          state.setMoveUser1("piedra");
+        } else if (move == "papel") {
+          state.setMoveUser1("papel");
+        } else {
+          state.setMoveUser1("tijera");
+        }
+      });
+    });
   }
   render() {
     this.innerHTML = `
@@ -47,6 +60,7 @@ class SelectPlay extends HTMLElement {
     
     
     `;
+    this.addListeners();
   }
 }
 customElements.define("select-play", SelectPlay);

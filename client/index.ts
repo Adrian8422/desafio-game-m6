@@ -8,7 +8,7 @@ import "./pages/access-room";
 import "./pages/waiting-start";
 import "./pages/select-play";
 import "./components/button";
-import "./components/hands";
+import "./components/hands/hands-user-1";
 import "./components/header";
 import "./components/counter";
 

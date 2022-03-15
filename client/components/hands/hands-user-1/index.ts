@@ -1,6 +1,7 @@
-const piedra = require("../../assets/piedra (1).svg");
-const papel = require("../../assets/papel.svg");
-const tijera = require("../../assets/tijera (1).svg");
+const piedra = require("../../../assets/piedra (1).svg");
+const papel = require("../../../assets/papel.svg");
+const tijera = require("../../../assets/tijera (1).svg");
+import { state } from "../../../state";
 
 class HandsPlay extends HTMLElement {
   shadow: ShadowRoot;
@@ -32,8 +33,24 @@ class HandsPlay extends HTMLElement {
     if (inGame) {
       (handEl.style.height = "325px"), (handEl.style.width = "180px");
     }
+    // const cs = state.getState();
+    // const hoverChoices = this.querySelectorAll(".choice");
+    // hoverChoices.forEach((e) => {
+    //   e.addEventListener("click", (event) => {
+    //     event.stopPropagation();
+    //     const move = e.getAttribute("jugada");
+    //     if (move == "piedra") {
+    //       state.setMoveUser1("piedra");
+    //     } else if (move == "papel") {
+    //       state.setMoveUser1("papel");
+    //     } else {
+    //       state.setMoveUser1("tijera");
+    //     }
+    //   });
+    // });
   }
   render() {
+    const cs = state.getState();
     const jugada = this.getAttribute("jugada");
     let gameType = "";
     if (jugada == "piedra") {
