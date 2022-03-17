@@ -285,6 +285,53 @@ const state = {
     }
     this.setState(cs);
   },
+  whoWins(player1: Jugada, player2: Jugada) {
+    const cs = this.getState();
+    const winWithStone = player1 == "piedra" && player2 == "tijera";
+    const winWithPaper = player1 == "papel" && player2 == "piedra";
+    const winWithScissors = player1 == "tijera" && player2 == "papel";
+
+    const winner = [winWithStone, winWithPaper, winWithScissors].includes(true);
+    const loseWithStone = player1 == "piedra" && player2 == "papel";
+    const loseWithPaper = player1 == "papel" && player2 == "tijera";
+    const loseWithScissors = player1 == "tijera" && player2 == "piedra";
+
+    const loser = [loseWithStone, loseWithPaper, loseWithScissors].includes(
+      true
+    );
+
+    let results = "";
+
+    if (winner) {
+      cs.history.user1++;
+      results = "ganaste";
+    } else if (loser) {
+      cs.history.user2++;
+      results = "perdiste";
+    } else {
+      results = "empate";
+    }
+
+    if (cs.userName2 && results == "ganaste") {
+      results = "perdiste";
+    } else if (cs.userName2 && results == "perdiste") {
+      results = "ganaste";
+    }
+    const roomId = cs.roomId;
+
+    fetch(API_BASE_URL + "/rooms/" + roomId, {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ results }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {});
+    return results;
+  },
 };
 
 export { state };

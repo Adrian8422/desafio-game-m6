@@ -13,4 +13,6 @@ router.setRoutes([
   { path: "/access-room", component: "access-room" },
   { path: "/waiting-start", component: "waiting-start" },
   { path: "/select-play", component: "select-play" },
+  { path: "/in-game", component: "in-game" },
+  { path: "/lose-page", component: "lose-page" },
 ]);

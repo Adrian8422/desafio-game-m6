@@ -151,6 +151,22 @@ app.post("/rooms/:roomId", (req, res) => {
     .then((room) => {
       if (room.exists) {
         const roomDate = room.data();
+        if (results == "ganaste") {
+          roomDate.history.user1 += 1;
+        }
+        if (results == "perdiste") {
+          roomDate.history.user2 += 1;
+        }
+        if (results == "empate") {
+          roomDate.history.user1 += 0;
+          roomDate.history.user2 += 0;
+        }
+        roomsCollection.doc(roomId.toString()).update(roomDate);
+        res.json(roomDate);
+      } else {
+        res.status(400).json({
+          message: "No existe esa room",
+        });
       }
     });
 });

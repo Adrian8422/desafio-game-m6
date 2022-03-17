@@ -7,8 +7,10 @@ import "./pages/compartir-code";
 import "./pages/access-room";
 import "./pages/waiting-start";
 import "./pages/select-play";
+import "./pages/in-game";
+import "./pages/lose";
 import "./components/button";
-import "./components/hands/hands-user-1";
+import "./components/hands";
 import "./components/header";
 import "./components/counter";
 

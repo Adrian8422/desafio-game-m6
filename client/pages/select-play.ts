@@ -23,20 +23,33 @@ class SelectPlay extends HTMLElement {
     this.appendChild(style);
   }
   addListeners() {
+    ///si el usuario 1 no tiene name significa que estamos siendo el usuario 2 y viceversa
+    //LUEGO CUANDO AMBOS USUARIOS ELIGEN UNA JUGADA , ME REDIRIGE A LA PROXIMA PAGE CON LA ELECCION DE CADA UNO
     const cs = state.getState();
     const hoverChoices = this.querySelectorAll(".choice");
     hoverChoices.forEach((e) => {
       e.addEventListener("click", (event) => {
         event.stopPropagation();
         const move = e.getAttribute("jugada");
-        if (move == "piedra") {
+        if (cs.userName1 == "" && move == "piedra") {
+          state.setMoveUser2("piedra");
+        } else if (cs.userName2 == "" && move == "piedra") {
           state.setMoveUser1("piedra");
-        } else if (move == "papel") {
+        } else if (cs.userName1 == "" && move == "papel") {
+          state.setMoveUser2("papel");
+        } else if (cs.userName2 == "" && move == "papel") {
           state.setMoveUser1("papel");
+        } else if (cs.userName1 == "" && move == "tijera") {
+          state.setMoveUser2("tijera");
         } else {
           state.setMoveUser1("tijera");
         }
       });
+    });
+    state.subscribe(() => {
+      if (cs.dataRtdb[0].move && cs.dataRtdb[1].move) {
+        Router.go("in-game");
+      }
     });
   }
   render() {
