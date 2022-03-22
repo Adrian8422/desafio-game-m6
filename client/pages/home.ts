@@ -31,12 +31,13 @@ class HomePage extends HTMLElement {
       font-weight: bolder;
     }
     .container-full-page{
-      color:#190b0b;
-      margin-top: 16vh;
-      width: 100%;
+      color: #190b0b;
+      padding: 96px 0 0 44px;
+      max-width: 800px;
       display: grid;
       gap: 42px;
       font-size: 24px;
+      margin: 0 auto;
     }
     
     `;
@@ -53,8 +54,7 @@ class HomePage extends HTMLElement {
     });
   }
   render() {
-    const div = document.createElement("div");
-    div.innerHTML = `
+    this.innerHTML = `
     
     <div class="container-full-page">
         <div class="container-title"  
@@ -75,7 +75,6 @@ class HomePage extends HTMLElement {
     
     `;
 
-    this.appendChild(div);
     this.addListeners();
   }
 }

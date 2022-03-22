@@ -17,3 +17,6 @@ import "./components/counter";
 import "./components/score";
 
 import { state } from "./state";
+(() => {
+  //   state.init();
+})();

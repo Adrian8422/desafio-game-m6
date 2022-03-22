@@ -1,5 +1,6 @@
 import { Router } from "@vaadin/router";
 import { state } from "../state";
+const closeImg = require("../assets/close-img-menu.png");
 
 class Register extends HTMLElement {
   connectedCallback() {
@@ -7,18 +8,30 @@ class Register extends HTMLElement {
 
     const style = document.createElement("style");
     style.innerHTML = `
+    .container-img{
+      display: flex;
+      flex-direction: row;
+      padding: 19px;
+      justify-content: flex-end;
+
+    }
+    .img-close{
+      width: 26px;
+      padding: 4px;
+      height: 27px;
+    }
 
     
     .container-form-sign-up{
-        display: flex;
-        background-color: rgb(24 36 39);
-        font-family: 'Russo One', sans-serif;
-        flex-direction: column;
-        color: whitesmoke;
-        font-size: 18px;
-        width: 100%;
-        height: 97vh;
-      
+      display: flex;
+      background-color: rgb(24 36 39);
+      font-family: 'Russo One', sans-serif;
+      flex-direction: column;
+      color: whitesmoke;
+      font-size: 18px;
+      width: 100%;
+      height: 419px;
+      border-radius: 20px;
       }
       .label-signup{
         font-size: 20px;
@@ -57,7 +70,7 @@ class Register extends HTMLElement {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        padding: 16vh 16vh 4vh;
+        padding: 45px 0 0 0;
       }
       .cloud-register{
           display:none;
@@ -74,9 +87,13 @@ class Register extends HTMLElement {
 
   addListeners() {
     const cs = state.getState();
+    const closeButton = this.querySelector(".img-close");
     const form = this.querySelector(".submit");
     const button = this.querySelector(".button");
     const cloudRegister = this.querySelector(".cloud-register");
+    closeButton.addEventListener("click", () => {
+      Router.go("/");
+    });
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const target = e.target as any;
@@ -102,8 +119,11 @@ class Register extends HTMLElement {
     div.innerHTML = `
          
          <div class="container-form-sign-up">
-         <h2 class="sign-up-title">Registrarse</h2>
-         <div class="cloud-register">Agregar nube que diga mensage del registro de estado </div>
+            <div class="container-img">
+               <img class="img-close" src="${closeImg}" />
+            </div>
+           <h2 class="sign-up-title">Registrarse</h2>
+           <div class="cloud-register">Agregar nube que diga mensage del registro de estado </div>
     
             <form class="submit">
             

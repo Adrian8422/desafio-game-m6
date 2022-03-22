@@ -30,6 +30,16 @@ const state = {
   },
   listeners: [],
 
+  init() {
+    // const lastStorage = JSON.parse(sessionStorage.getItem("state"));
+    // if (lastStorage) {
+    //   this.setState(lastStorage);
+    // } else {
+    //   const cs = this.getState();
+    //   this.setState(cs);
+    // }
+  },
+
   getState() {
     return this.data;
   },
@@ -236,6 +246,7 @@ const state = {
     for (const cb of this.listeners) {
       cb();
     }
+    sessionStorage.setItem("state", JSON.stringify(newState));
     console.log("el state cambio", this.data);
   },
   subscribe(callback: (any: any) => any) {
