@@ -23,7 +23,7 @@ class CompartirCod extends HTMLElement {
     .header{
       display:flex;
       justify-content:space-between;
-      width: 455px;
+      max-width: 455px;
       margin: 0 auto;
       padding:11px;
       background-color:#4ad3dea3;

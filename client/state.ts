@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3003";
+const API_BASE_URL = "https://game-m6.herokuapp.com" || "http://localhost:3003";
 type Jugada = "piedra" | "papel" | "tijera";
 import { rtdb } from "./rtdb";
 import map from "lodash/map";

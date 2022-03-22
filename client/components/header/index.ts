@@ -11,7 +11,7 @@ class HeaderData extends HTMLElement {
     const containerUser = this.querySelector(".header");
     containerUser.setAttribute(
       "style",
-      "display:flex; justify-content:space-between; width: 455px; margin: 0 auto; padding:11px; background-color:#4ad3dea3;border: solid 2px #211d1c; border-radius: 9px;"
+      "display:flex; justify-content:space-between; max-width: 455px; margin: 0 auto; padding:11px; background-color:#4ad3dea3;border: solid 2px #211d1c; border-radius: 9px;"
     );
     const userDos = this.querySelector(".user2");
     userDos.setAttribute("style", "color:red;");
