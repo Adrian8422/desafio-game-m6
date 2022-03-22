@@ -62,6 +62,17 @@ class AccessRoom extends HTMLElement {
       margin-top: 58px;
     
     }
+    .container-title-two{
+      display:none;
+      font-size: 65px;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      margin: 0 auto;
+      color: #190b0b;
+      font-family: 'Source Code Pro', monospace;
+      text-shadow: 1px 2px 7px;
+    }
     .form-idRoomExist{
       display: none;
       height: 199px;
@@ -79,10 +90,12 @@ class AccessRoom extends HTMLElement {
     `;
     this.appendChild(style);
 
-    ///logeo del segundo usuario
+    ///logeo del segundo usuario y hago el cambio de formularios para ingresar todos los datos
 
     const cs = state.getState();
     const form = this.querySelector(".form");
+    const containerTitleFirst = this.querySelector(".container-title");
+    const containerTitleTwo = this.querySelector(".container-title-two");
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -100,6 +113,9 @@ class AccessRoom extends HTMLElement {
         }
         if (cs.idUser2 && location.pathname == "/access-room") {
           form.setAttribute("style", "display:none");
+          containerTitleFirst.setAttribute("style", "display:none");
+          containerTitleTwo.setAttribute("style", "display:flex");
+
           formRoom.setAttribute("style", "display:grid");
         }
       });
@@ -162,6 +178,10 @@ class AccessRoom extends HTMLElement {
               <button-comp class="button">Ingresar</button-comp>
          </div>
       </form> 
+
+      <div class="container-title-two"  
+            <h2 class="title-page">Ingrese codigo de room</h2>
+        </div>
        
     <form class="form-idRoomExist">
           <div>
@@ -170,7 +190,7 @@ class AccessRoom extends HTMLElement {
           <button-comp class="button">Ingresar a sala</button-comp>
        </form>     
     </div>
-   
+    
     `;
   }
 }
