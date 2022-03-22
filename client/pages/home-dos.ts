@@ -42,26 +42,24 @@ class HomePageDos extends HTMLElement {
     margin: 0 auto;
     }
     .form{
-      width: 100%;
-      display: none;
-      
-      height: 199px;
-      gap: 53px;
-      padding: 0 57px 104px;
-      margin: 0 auto;
+    width: 100%;
+    display: none;
+    height: 199px;
+    gap: 53px;
+    margin: 0 auto;
   }
   .label{
     font-size: 20px;
     width: 73px;
     border-radius: 4px;
-    font-family: 'Russo One', sans-serif;
     margin: 0 0 -20px 0;
-    
     height: 30px;
-    text-shadow: 2px 3px 1px black;
+    text-shadow: 2px 2px 1px black;
     color: #969090;
     margin-bottom: -9px;
     font-weight: bold;
+    
+   
   }
   .container-input{
 

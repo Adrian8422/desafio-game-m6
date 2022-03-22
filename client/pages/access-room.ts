@@ -44,19 +44,19 @@ class AccessRoom extends HTMLElement {
     }
     .label{
       font-size: 20px;
-      width: 73px;
+      width: 50px;
       border-radius: 4px;
-      font-family: 'Russo One', sans-serif;
+      /* font-family: 'Russo One', sans-serif; */
       margin: 0 0 -20px 0;
       /* background-color: darkgrey; */
       height: 30px;
       text-shadow: 2px 2px 1px black;
       color: #969090;
-      margin-bottom: -6px;
+      margin-bottom: -8px;
       font-weight: bold;
     }
     .input{
-      width: 48vh;
+      width: 361px;
       border: solid 2px #190b0b;
       border-radius: 7px;
     }

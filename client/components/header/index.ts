@@ -17,14 +17,15 @@ class HeaderData extends HTMLElement {
     userDos.setAttribute("style", "color:red;");
   }
   render() {
+    const cs = state.getState();
     this.innerHTML = `
        <div class="header">
           <div class="container-users">
               <div class="user1">${state.getState().dataRtdb[0].name}:${
-      state.data.history.user1
+      cs.history.user1
     }</div>
               <div class="user2">${state.getState().dataRtdb[1].name}:${
-      state.data.history.user1
+      cs.history.user2
     }</div>
   
           </div>
