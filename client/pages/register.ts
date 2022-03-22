@@ -32,55 +32,48 @@ class Register extends HTMLElement {
       width: 100%;
       height: 419px;
       border-radius: 20px;
-      }
-      .label-signup{
-        font-size: 20px;
-        width: 100%;
-        height: 30px;
-        border-radius: 4px;
-        font-family: 'Russo One', sans-serif;
-        margin: 0 0 -20px 0;
-      }
-      .input{
-        width:100%;
-        border-radius: 11px;
-        height: 25px;
-      }
-     
-    
-      .submit{
-        display: grid;
-        max-width: 104%;
-        height: 199px;
-        
-        gap: 1px;
-        padding: 53px;
-      }
-      .button{
-        width: 150px;
-        border-radius: 11px;
-        font-weight: 500;
-      }
-      .container-button{
-        display: flex;
-        flex-direction: row;
-        justify-content: end;
-      }
-      .sign-up-title{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding: 45px 0 0 0;
-      }
-      .cloud-register{
-          display:none;
-          background-color:aqua;
-      }
-  
-    
-    
-    
-    
+    }
+    .label-signup{
+      font-size: 20px;
+      width: 100%;
+      height: 30px;
+      border-radius: 4px;
+      font-family: 'Russo One', sans-serif;
+      margin: 0 0 -20px 0;
+    }
+    .input{
+      width:100%;
+      border-radius: 11px;
+      height: 25px;
+    }
+    .submit{
+      display: grid;
+      max-width: 104%;
+      height: 199px;
+      gap: 1px;
+      padding: 53px;
+    }
+    .button{
+      width: 150px;
+      border-radius: 11px;
+      font-weight: 500;
+    }
+    .container-button{
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+    }
+    .sign-up-title{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding: 45px 0 0 0;
+    }
+    .cloud-register{
+        display:none;
+        background-color:aqua;
+    }
+ 
     `;
     this.appendChild(style);
   }
@@ -89,8 +82,7 @@ class Register extends HTMLElement {
     const cs = state.getState();
     const closeButton = this.querySelector(".img-close");
     const form = this.querySelector(".submit");
-    const button = this.querySelector(".button");
-    const cloudRegister = this.querySelector(".cloud-register");
+
     closeButton.addEventListener("click", () => {
       Router.go("/");
     });
@@ -106,12 +98,6 @@ class Register extends HTMLElement {
 
       Router.go("home-dos");
     });
-
-    // el mensagge del cloud de registro si fue correcto o no debe figurar en la pantalla home-dos, en esta de registro no
-
-    // button.addEventListener("click", () => {
-    //   cloudRegister.setAttribute("style", "display:flex");
-    // });
   }
   render() {
     const div = document.createElement("div");

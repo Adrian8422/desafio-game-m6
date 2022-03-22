@@ -1,8 +1,6 @@
 import { Router } from "@vaadin/router";
 import { state } from "../state";
 
-////ARREGLAR EL ACCES ROOM PORQUE NO FUNCIONA EL INPUT DEL IDROOM, VER COMO PODEMOS ACCEDER DIRECTAMETNE CON EL SIGN IN Y CONTINUAMENTE EL ACCESS ROOM. DALE PAPAAAAAA QUE SE LOGRAAAA
-
 class AccessRoom extends HTMLElement {
   connectedCallback() {
     this.render();
@@ -64,9 +62,6 @@ class AccessRoom extends HTMLElement {
       margin-top: 58px;
     
     }
-
-
-
     .form-idRoomExist{
       display: none;
       height: 199px;
@@ -84,11 +79,10 @@ class AccessRoom extends HTMLElement {
     `;
     this.appendChild(style);
 
-    ///logeo de segundo usuario
+    ///logeo del segundo usuario
 
     const cs = state.getState();
     const form = this.querySelector(".form");
-    const button = this.querySelector(".button");
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -111,9 +105,7 @@ class AccessRoom extends HTMLElement {
       });
     });
 
-    // aca creamos el acceso a la sala poniendo en regla que solo 2 usuarios puedan conectarse ya que esta pactado asi en la rtdb
-    const inputName = this.querySelector(".input");
-    const inputIdRoom = this.querySelector(".idroom");
+    // creamos el acceso a la sala poniendo en regla que solo 2 usuarios puedan conectarse ya que esta pactado asi en la rtdb
 
     const formRoom = this.querySelector(".form-idRoomExist");
 
@@ -121,8 +113,6 @@ class AccessRoom extends HTMLElement {
       e.preventDefault();
       const target = e.target as any;
       cs.roomId = target.idroom.value;
-
-      ////TOQUETEAR ESTO ASI ME FUNCIONA BIEN ESTO Y PUEDO SEGUIR AVANZANDO- NO ME TOMA LOS DATOS DEL SUBSCRIBE
 
       state.accessToRoom(() => {
         state.subscribe(() => {
@@ -134,6 +124,7 @@ class AccessRoom extends HTMLElement {
           ) {
             state.setValuesPlayer2rtdb();
             state.listenRoom();
+            // segun los datos (online) de la rtdb redirigimos a la pagina correspondiente
 
             state.subscribe(() => {
               if (
@@ -152,42 +143,6 @@ class AccessRoom extends HTMLElement {
             });
           }
         });
-        // state.subscribe(() => {
-        ///ver como hace funcionar el acces to romm poniendoles los filtros para solo poder acceder copn ese usuario a esa sala
-        // const dataRtdbUser1 = state.data.dataRtdb[0].userId;
-        // const dataRtdbUser2 = state.data.dataRtdb[1].userId;
-        // console.log("dataUserr1Parse", dataRtdbUser1);
-        // console.log("dataUserr2", dataRtdbUser2);
-        // console.log("data del rtdb en posisicon de user2", cs.dataRtdb[1]);
-        // if (cs.dataRtdb[1].userId == dataRtdbUser2) {
-        // }
-        // });
-        // state.subscribe(() => {
-        //   if (cs.dataRtdb[1].userId) {
-        //     // Router.go("home-dos");
-        //   } else if (
-        //     !cs.dataRtdb[1].userId &&
-        //     location.pathname == "/access-room"
-        //   ) {
-        //     state.setValuesPlayer2rtdb();
-        //     state.listenRoom();
-
-        //     state.subscribe(() => {
-        //       if (
-        //         cs.dataRtdb[0].online == "false" ||
-        //         cs.dataRtdb[1].online == "false"
-        //       ) {
-        //         console.error("players not connected");
-        //       }
-        //       if (
-        //         cs.dataRtdb[0].online == "true" ||
-        //         cs.dataRtdb[1].online == "true"
-        //       ) {
-        //         Router.go("waiting-start");
-        //       }
-        //     });
-        //   }
-        // });
       });
     });
   }
@@ -198,27 +153,22 @@ class AccessRoom extends HTMLElement {
         <div class="container-title"  
             <h1 class="title-page">Ingrese usuario</h1>
         </div>
-        <form class="form">
+      <form class="form">
         <label class="label">Nombre</label>
-      <div class="container-input">
-          <input class="input" type="text" name="nombre" />
-      </div>
-      <div class="container-button">
+         <div class="container-input">
+              <input class="input" type="text" name="nombre" />
+         </div>
+           <div class="container-button">
               <button-comp class="button">Ingresar</button-comp>
-      </div>
-    </form> 
-    
-    
+         </div>
+      </form> 
+       
     <form class="form-idRoomExist">
           <div>
-        
              <input class="input-room" type="text" placeholder="Ingrese su ID de Sala ej:1234" name="idroom" />
           </div>
           <button-comp class="button">Ingresar a sala</button-comp>
-
-
-       </form>
-        
+       </form>     
     </div>
     
     `;

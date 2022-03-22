@@ -130,7 +130,6 @@ const state = {
         .then((data) => {
           cs.roomId = data.id;
           this.setState(cs);
-          // tmb recibimos un callback porque queremos avisar que el newRoom está creado para que vaya otra vez a la APi a pedirle el id complejo
           if (callback) {
             callback();
           }
@@ -159,13 +158,12 @@ const state = {
 
   listenRoom(callback?) {
     const cs = this.getState();
-    //seccion para escribir msg del backend
     const roomRef = rtdb.ref("/rooms/" + cs.rtdbRoomId);
     roomRef.on("value", (snapshot) => {
       const currentState = this.getState();
       const currentGameFromSv = snapshot.val();
 
-      //treamos datos del currentGame para guardarlo en el state y poder sumar las cosas
+      //treamos datos del currentGame para guardarlo en el state y poder tener la datartdb en el state
       const currentList = map(currentGameFromSv.currentGame);
       console.log("elcurrent list", currentList);
       cs.dataRtdb = currentList;

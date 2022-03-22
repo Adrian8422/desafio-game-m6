@@ -171,15 +171,6 @@ app.post("/rooms/:roomId", (req, res) => {
     });
 });
 
-app.post("/messages/:roomId", (req, res) => {
-  const { roomId } = req.params;
-  const chatRoomsRed = rtdb.ref(`/rooms/${roomId}/messages`);
-  chatRoomsRed.push(req.body, () => {
-    res.json({
-      message: "Todo bien",
-    });
-  });
-});
 app.get("/env", (req, res) => {
   res.json({
     environment: process.env.NODE_ENV,

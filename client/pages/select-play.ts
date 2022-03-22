@@ -4,9 +4,7 @@ import { state } from "../state";
 class SelectPlay extends HTMLElement {
   connectedCallback() {
     this.render();
-    // setTimeout(() => {
-    //   Router.go("home-dos");
-    // }, 4200);
+
     const style = document.createElement("style");
     style.innerHTML = `
     
@@ -57,10 +55,6 @@ class SelectPlay extends HTMLElement {
     <div class="container-page">
     
          <counter-element></counter-element>
-
-
-
-
         <div class="container-hands">       
             <hands-el class="choice" jugada="piedra" hover="true"></hands-el>
             <hands-el class="choice" jugada="papel" hover="true"></hands-el>

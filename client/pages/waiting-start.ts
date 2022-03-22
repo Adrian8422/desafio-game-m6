@@ -123,9 +123,7 @@ class WaitingStart extends HTMLElement {
 
             <button-comp class="start">¡Jugar!</button-comp>
 
-          </div>  
-  
-       
+          </div>      
       
          <div class="container-hands">       
            <hands-el jugada="piedra"></hands-el>

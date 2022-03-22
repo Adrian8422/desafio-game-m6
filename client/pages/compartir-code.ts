@@ -33,10 +33,7 @@ class CompartirCod extends HTMLElement {
     }
     .user2{
       color:red;
-    }
-    
-    
-    
+    }  
     `;
     const containerUser = this.querySelector(".container-page");
     const containerHands = this.querySelector(".container-hands");

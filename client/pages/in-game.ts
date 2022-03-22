@@ -4,9 +4,7 @@ import { state } from "../state";
 class InGame extends HTMLElement {
   connectedCallback() {
     this.render();
-    // setTimeout(() => {
-    //   Router.go("home-dos");
-    // }, 4200);
+
     const style = document.createElement("style");
     style.innerHTML = `
     
@@ -53,10 +51,14 @@ class InGame extends HTMLElement {
         Router.go("lose-page");
       } else if (cs.userName2 && results == "perdiste") {
         Router.go("lose-page");
+      } else if (cs.userName1 && results == "empate") {
+        Router.go("empate-page");
+      } else if (cs.userName2 && results == "empate") {
+        Router.go("empate-page");
       }
     }, 3000);
   }
-  ////AGREGAR TIME AL SETTIMEOUT
+
   render() {
     this.innerHTML = `
     <div class="container-page">
@@ -72,12 +74,7 @@ class InGame extends HTMLElement {
          <hands-el class="user2" jugada="${
            state.getState().dataRtdb[1].move
          }" in-game="true"></hands-el>
-      </div>
-    
-        
-
-
-    
+      </div>  
     </div>
     
     

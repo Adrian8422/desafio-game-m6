@@ -10,6 +10,7 @@ import "./pages/select-play";
 import "./pages/in-game";
 import "./pages/lose";
 import "./pages/winner";
+import "./pages/empate";
 import "./components/button";
 import "./components/hands";
 import "./components/header";

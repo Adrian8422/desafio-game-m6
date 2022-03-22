@@ -16,4 +16,5 @@ router.setRoutes([
   { path: "/in-game", component: "in-game" },
   { path: "/lose-page", component: "lose-page" },
   { path: "/winner-page", component: "winner-page" },
+  { path: "/empate-page", component: "empate-page" },
 ]);
