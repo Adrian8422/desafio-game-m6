@@ -170,7 +170,7 @@ class AccessRoom extends HTMLElement {
           <button-comp class="button">Ingresar a sala</button-comp>
        </form>     
     </div>
-    
+   
     `;
   }
 }
