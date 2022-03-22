@@ -1,3 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  height: 697px;
+  width: 100%;
+  background-image: url("./assets/fondo-dibujos-animados-pared-ladrillo_97231-2003.webp");
+  font-family: "Odibee Sans";
+}
 .root {
-  height: 97vh;
+  height: 697px;
+
+  height: 732px;
+  max-width: 581px;
+  margin: 0 auto;
 }

@@ -9,12 +9,14 @@ class ButtonComp extends HTMLElement {
     .button-elem{
       border-radius: 18px;
       font-family: 'Source Code Pro', monospace;
-      background-color: #102626;
+      background-color: #ff5722f0;
       height: 84px;
       width: 360px;
       font-size: 29px;
-      border:solid 6px #00fff9;
-      color: silver;
+      border: solid 6px #190b0b;
+      color: #190b0b;
+      box-shadow: 10px 10px 10px #190b0b;
+      font-weight: bolder;
       
     } 
     `;

@@ -1,8 +1,9 @@
-import { Router } from "@vaadin/router";
 import { state } from "../state";
-const loseImg = require("../assets/lennyson.jpg");
+import { Router } from "@vaadin/router";
 
-class LosePage extends HTMLElement {
+const winImg = require("../assets/lenny.jpg");
+
+class WinnerPage extends HTMLElement {
   connectedCallback() {
     this.render();
     const style = document.createElement("style");
@@ -25,7 +26,6 @@ class LosePage extends HTMLElement {
      
       `;
     this.appendChild(style);
-
     const cs = state.getState();
 
     const buttonRestart = this.querySelector(".button-restart");
@@ -48,7 +48,7 @@ class LosePage extends HTMLElement {
     div.innerHTML = `
   
       <div class="container-page">
-         <img class="img" src="${loseImg}"/>
+         <img class="img" src="${winImg}"/>
          <score-compo></score-compo>
          <button-comp class="button-restart">Restart</button-comp>
 
@@ -59,4 +59,4 @@ class LosePage extends HTMLElement {
     this.appendChild(div);
   }
 }
-customElements.define("lose-page", LosePage);
+customElements.define("winner-page", WinnerPage);

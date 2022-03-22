@@ -332,6 +332,34 @@ const state = {
       .then((data) => {});
     return results;
   },
+  restart() {
+    const cs = this.getState();
+    const roomRef = rtdb.ref("/rooms/" + cs.rtdbRoomId + "/currentGame/");
+    if (cs.userName1) {
+      roomRef.update({
+        user1: {
+          name: cs.userName1,
+          online: true,
+          userId: cs.idUser1,
+          start: false,
+          move: "",
+        },
+      });
+      cs.currentGame.userMove1 = "";
+    }
+    if (cs.userName2) {
+      roomRef.update({
+        user2: {
+          name: cs.userName2,
+          online: true,
+          userId: cs.idUser2,
+          start: false,
+          move: "",
+        },
+      });
+      cs.currentGame.userMove2 = "";
+    }
+  },
 };
 
 export { state };

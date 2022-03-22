@@ -7,29 +7,36 @@ class HomePage extends HTMLElement {
     style.innerHTML = `
     .container-title{
       display: flex;
-      font-size: 65px;
+      font-size: 72px;
       flex-direction: column;
       justify-content: center;
       width: 66vh;
       margin: 0 auto;
-      color: green;
+      color: #190b0b;
       font-family: 'Source Code Pro', monospace;
+      text-shadow: 2px 4px 5px;
+      
     }
     .subtitle{
-      font-size: 25px;
+      font-size: 32px;
     }
     .container-inputs{
       display: grid;
       gap: 17px;
       margin: 0 auto;
       width: 66vh;
-      
+      font-family: 'Source Code Pro', monospace;
+      color:#190b0b;
+      text-shadow: 2px 4px 5px;
+      font-weight: bolder;
     }
     .container-full-page{
-      margin-top: 28vh;
+      color:#190b0b;
+      margin-top: 16vh;
       width: 100%;
-     display: grid;
-     gap: 42px;
+      display: grid;
+      gap: 42px;
+      font-size: 24px;
     }
     
     `;

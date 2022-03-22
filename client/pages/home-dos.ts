@@ -8,63 +8,80 @@ class HomePageDos extends HTMLElement {
     style.innerHTML = `
     .container-title{
       display: flex;
-      font-size: 65px;
-      flex-direction: column;
-      justify-content: center;
-      width: 66vh;
-      margin: 0 auto;
-      color: green;
-      font-family: 'Source Code Pro', monospace;
+    font-size: 65px;
+    flex-direction: column;
+    justify-content: center;
+    width: 27vh;
+    margin: 0 auto;
+    color: #190b0b;
+    font-family: 'Source Code Pro', monospace;
+    margin-bottom: 3vh;
+    text-shadow: 1px 2px 7px;
     }
    
     .container-inputs{
       display: grid;
-      gap: 17px;
+      gap: 16px;
       margin: 0 auto;
-      width: 66vh;
-      
+      width: 100%;
+      justify-content: center;
     }
     .container-full-page{
-      margin-top: 28vh;
       width: 100%;
-     display: grid;
-     gap: 42px;
-    }
+      display: grid;
+      gap: 42px;
+  }
+  
+    
     .container-hands{
-      display:flex;
-      flex-direction:row;
-      justify-content: space-evenly;
+      padding: 7vh 0 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 0 auto;
     }
     .form{
+      width: 100%;
       display: none;
-      max-width: 104%;
-      height: 199px;
       
-      gap: 1px;
-      padding: 53px;
+      height: 199px;
+      gap: 53px;
+      padding: 0 57px 104px;
+      margin: 0 auto;
   }
   .label{
-      font-size: 20px;
-      width: 100%;
-      height: 30px;
-      border-radius: 4px;
-      font-family: 'Russo One', sans-serif;
-      margin: 0 0 -20px 0;
+    font-size: 20px;
+    width: 73px;
+    border-radius: 4px;
+    font-family: 'Russo One', sans-serif;
+    margin: 0 0 -20px 0;
+    
+    height: 30px;
+    text-shadow: 2px 3px 1px black;
+    color: #969090;
+    margin-bottom: -9px;
+    font-weight: bold;
+  }
+  .container-input{
+
+    margin: 0 auto;
   }
   .input{
-      width:100%;
-      border-radius: 11px;
-      height: 25px;
+    border-radius: 6px;
+    height: 25px;
+    border: solid 2px;
+    font-family: 'Russo One', sans-serif;
+    width: 100%;
   }
   .button{
-    width: 150px;
-    border-radius: 11px;
-    font-weight: 500;
+    margin: 0 auto;
   }
   .container-button{
     display: flex;
     flex-direction: row;
     justify-content: end;
+    margin: 0 auto;
   }
 
   .form-idRoomExist{
@@ -135,8 +152,7 @@ class HomePageDos extends HTMLElement {
     // });
   }
   render() {
-    const div = document.createElement("div");
-    div.innerHTML = `
+    this.innerHTML = `
     
     <div class="container-full-page">
         <div class="container-title"  
@@ -152,13 +168,12 @@ class HomePageDos extends HTMLElement {
           
        </div>
        <form class="form">
-           <label class="label">Nombre</label>
-         <div class="container-input">
-             <input class="input" type="text" name="nombre" />
-         </div>
-         <div class="container-button">
-                 <button class="button">Ingresar</button>
-         </div>
+       <div class="container-input">
+             <label class="label">Nombre</label>
+             <input class="input" type="text" name="nombre" placeholder="Ingrese su nombre" />
+             </div>
+             <button-comp class="button">Ingresar</button-comp>
+       
        </form>
 
 
@@ -168,7 +183,7 @@ class HomePageDos extends HTMLElement {
         
              <input class="input-room" type="text" placeholder="Ingrese su ID de Sala ej:1234" name="idroom" />
           </div>
-          <button class="button">Ingresar a sala</button>
+          <button-comp class="button">Ingresar a sala</button-comp>
 
 
        </form>
@@ -184,7 +199,6 @@ class HomePageDos extends HTMLElement {
     
     `;
 
-    this.appendChild(div);
     this.addListeners();
   }
 }

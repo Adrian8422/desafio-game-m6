@@ -15,4 +15,5 @@ router.setRoutes([
   { path: "/select-play", component: "select-play" },
   { path: "/in-game", component: "in-game" },
   { path: "/lose-page", component: "lose-page" },
+  { path: "/winner-page", component: "winner-page" },
 ]);

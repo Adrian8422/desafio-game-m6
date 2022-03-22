@@ -7,33 +7,59 @@ class WaitingStart extends HTMLElement {
     const cs = state.getState();
     const style = document.createElement("style");
     style.innerHTML = `
+
+    .container-page{
+      width: 100%;
+      display: grid;
+      height: 701px;
+      margin-top: 13vh;
+    }
     .container-text{
       display: flex;
       font-size: 65px;
       flex-direction: column;
       justify-content: center;
-      width: 66vh;
+      width: 100%;
       margin: 0 auto;
-      color: green;
+      color: #190b0b;
       font-family: 'Source Code Pro', monospace;
     }
     
     .text{
-      max-width:25vh;
-      font-size:25px;
-      margin: 0 auto;
+      max-width: 40vh;
+      font-size: 25px;
+      margin: 2px auto;
+      text-shadow: 0px 0px 34px;
+      font-weight: 600;
     }
     .text-two{
       display:none;
       max-width:25vh;
       font-size:25px;
       margin: 0 auto;
+      text-shadow: 0px 0px 14px;
+      font-weight: 600;
+
+    }
+    .container-button{
+      display: flex;
+      width: 100%;
+     
+      justify-content: center;
 
     }
     .container-hands{
-      display:flex;
-      flex-direction:row;
+      display: flex;
+      flex-direction: row;
       justify-content: space-evenly;
+      width: 100%;
+      margin-top: 20vh;
+    }
+    .container-button{
+      display: flex;
+      width: 100%;
+      
+      justify-content: center;
     }
     `;
     this.appendChild(style);
@@ -82,19 +108,22 @@ class WaitingStart extends HTMLElement {
   }
   render() {
     const cs = state.getState();
-    const div = document.createElement("div");
-    div.innerHTML = `
+
+    this.innerHTML = `
     
+    <header-data></header-data>
       <div class="container-page">
-      <header-data></header-data>
           <div class="container-text">
           <p class="text">Presioná jugar
           y elegí: piedra, papel o tijera antes de que pasen los 3 segundos.</p>
-          <p class="text-two">Esperando a que ${cs.dataRtdb[1].name} presione ¡Jugar!...<p>
+          <p class="text-two">Esperando a que tu contrincante presione ¡Jugar!...<p>
               
           </div>
+          <div class="container-button">
 
-          <button-comp class="start">¡Jugar!</button-comp>
+            <button-comp class="start">¡Jugar!</button-comp>
+
+          </div>  
   
        
       
@@ -106,7 +135,6 @@ class WaitingStart extends HTMLElement {
       </div> 
       `;
 
-    this.appendChild(div);
     this.changePageForDate();
   }
 }

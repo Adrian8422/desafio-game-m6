@@ -22,7 +22,7 @@ class CounterCom extends HTMLElement {
         width: 200px;
         height: 200px;
         border-radius: 50%;
-        background: #0d2323;
+        background: #17bcbc7a;
         animation: animate 3s linear;
       }
       @keyframes animate {
@@ -67,7 +67,7 @@ class CounterCom extends HTMLElement {
         left: 20px;
         right: 20px;
         bottom: 20px;
-        background: #102626;
+        background: #22dbff99;
         border-radius: 50%;
       }
       
@@ -76,8 +76,8 @@ class CounterCom extends HTMLElement {
       .numero{
         position: relative;
         font-family: 'Odibee Sans', cursive;
-        font-size: 110px;
-        color:silver;
+        font-size: 150px;
+        color: #3a3333;
         text-align: center;
      }`;
     this.shadow.appendChild(style);

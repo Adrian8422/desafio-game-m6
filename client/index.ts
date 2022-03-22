@@ -9,9 +9,11 @@ import "./pages/waiting-start";
 import "./pages/select-play";
 import "./pages/in-game";
 import "./pages/lose";
+import "./pages/winner";
 import "./components/button";
 import "./components/hands";
 import "./components/header";
 import "./components/counter";
+import "./components/score";
 
 import { state } from "./state";
