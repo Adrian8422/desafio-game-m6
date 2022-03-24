@@ -21,7 +21,8 @@ class HandsPlay extends HTMLElement {
         opacity:1;
         width:90px;
         transition-duration:0.7s;
-      }
+      } 
+      
       `;
     }
     this.shadow.appendChild(style);
@@ -32,6 +33,12 @@ class HandsPlay extends HTMLElement {
     const inGame: any = this.getAttribute("in-game");
     if (inGame) {
       (handEl.style.height = "325px"), (handEl.style.width = "180px");
+    }
+    if (location.pathname == "/select-play") {
+      handEl.addEventListener("click", () => {
+        handEl.style.height = "325px";
+        handEl.style.width = "155px";
+      });
     }
   }
   render() {

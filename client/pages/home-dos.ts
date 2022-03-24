@@ -95,10 +95,25 @@ class HomePageDos extends HTMLElement {
     const containerInputs = this.querySelector(".container-inputs");
     const form = this.querySelector(".form");
 
+    ////ACA HACEMOS LA VERIFICAON DE QUE USE EL ID USER DEL NOMBRE QUE COLOCO CUANDO SE REGISTRO
+
     nuevoJuego.addEventListener("click", () => {
-      containerInputs.setAttribute("style", "display:none");
-      form.setAttribute("style", "display:grid");
+      if (cs.idUser1) {
+        state.askNewRoom(() => {
+          state.accessToRoom(() => {
+            state.setValuesPlayer1Rtdb();
+            Router.go("share-code");
+          });
+        });
+      } else if (cs.idUser1 == "") {
+        console.log(
+          "entro por donde el usuario todavia no esta logueado y necesita loguearse para poder crear sala"
+        );
+        containerInputs.setAttribute("style", "display:none");
+        form.setAttribute("style", "display:grid");
+      }
     });
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const target = e.target as any;

@@ -23,8 +23,15 @@ class SelectPlay extends HTMLElement {
   addListeners() {
     ///si el usuario 1 no tiene name significa que estamos siendo el usuario 2 y viceversa
     //LUEGO CUANDO AMBOS USUARIOS ELIGEN UNA JUGADA , ME REDIRIGE A LA PROXIMA PAGE CON LA ELECCION DE CADA UNO
+
     const cs = state.getState();
     const hoverChoices = this.querySelectorAll(".choice");
+    hoverChoices.forEach((e) => {
+      e.addEventListener("click", () => {
+        e.getAttribute("in-game");
+      });
+    });
+
     hoverChoices.forEach((e) => {
       e.addEventListener("click", (event) => {
         event.stopPropagation();
