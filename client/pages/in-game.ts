@@ -9,9 +9,11 @@ class InGame extends HTMLElement {
     style.innerHTML = `
     
     .container-page{
+      margin-top: 104px;
       display: grid;
       gap: 111px;
       justify-content: center;
+      transform: rotate(185deg) translateY(0%);
     }
     
     .container-hands{
@@ -38,6 +40,7 @@ class InGame extends HTMLElement {
   }
   addListeners() {
     const cs = state.getState();
+
     ////ACA TENGO QUE CAMBIAR LAS PAGINAS A DONDE REDIRECCIONA , POR EJ SI PERDI GANE O EMPATE
     const moveUser1: any = this.querySelector(".user1").getAttribute("jugada");
     const moveUser2: any = this.querySelector(".user2").getAttribute("jugada");

@@ -1,6 +1,6 @@
 import "./router";
 import "./pages/home";
-import "./pages/register";
+
 import "./pages/home-dos";
 import "./pages/sala-completa";
 import "./pages/compartir-code";
@@ -16,7 +16,7 @@ import "./components/hands";
 import "./components/header";
 import "./components/counter";
 import "./components/score";
-
+import "./components/register";
 import { state } from "./state";
 (() => {
   //   state.init();

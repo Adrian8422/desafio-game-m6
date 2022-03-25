@@ -44,9 +44,19 @@ class HomePage extends HTMLElement {
     this.appendChild(style);
   }
   addListeners() {
+    // ACA LO QUE HACEMOS ES SETEAR EL COMPONENTE REGISTRO SI SELECIONAMOS EL CHECKPOINT "NO" Y Y SI ES "SI" REDIRIGIMOS A LA PAGE HOME-DOS
+    const containerFullPage = this.querySelector(".container-full-page");
+    const containerInputs = this.querySelector(".container-inputs");
+    const containerTitle = this.querySelector(".container-title");
     const inputNo = this.querySelector(".no");
     inputNo.addEventListener("click", () => {
-      Router.go("register");
+      containerInputs.setAttribute("style", "display:none");
+      containerTitle.setAttribute("style", "display:none");
+      containerFullPage.innerHTML = `
+      <sign-up></sign-up>
+      
+      
+      `;
     });
     const inputYes = this.querySelector(".yes");
     inputYes.addEventListener("click", () => {

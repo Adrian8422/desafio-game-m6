@@ -1,6 +1,6 @@
 import { Router } from "@vaadin/router";
-import { state } from "../state";
-const closeImg = require("../assets/close-img-menu.png");
+import { state } from "../../state";
+const closeImg = require("../../assets/close-img-menu.png");
 
 class Register extends HTMLElement {
   connectedCallback() {

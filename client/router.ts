@@ -6,7 +6,7 @@ const router = new Router(root);
 
 router.setRoutes([
   { path: "/", component: "home-page" },
-  { path: "/register", component: "sign-up" },
+  // { path: "/register", component: "sign-up" },
   { path: "/home-dos", component: "home-dos" },
   { path: "/full-sala", component: "full-sala" },
   { path: "/share-code", component: "share-code" },
